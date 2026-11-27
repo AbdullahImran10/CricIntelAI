@@ -23,7 +23,6 @@ __pycache__/
 .DS_Store
 Thumbs.db
 
-#datasets
-data/
-data/raw/
-data/processed/
+# Cricket datasets
+data/raw/*
+!data/raw/.gitkeep

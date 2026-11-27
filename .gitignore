@@ -1,5 +1,4 @@
-
-# Virtual environment
+# Python environment
 venv/
 .venv/
 
@@ -7,22 +6,15 @@ venv/
 __pycache__/
 *.py[cod]
 
+# Cricket datasets
+data/raw/
+data/processed/
+
 # Jupyter
 .ipynb_checkpoints/
-
-# Streamlit
-.streamlit/secrets.toml
 
 # Environment variables
 .env
 
 # IDE
 .vscode/
-
-# OS
-.DS_Store
-Thumbs.db
-
-# Cricket datasets
-data/raw/*
-!data/raw/.gitkeep

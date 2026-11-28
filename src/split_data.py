@@ -14,7 +14,9 @@ feature_columns = [
     "win_percentage_difference",
     "h2h_difference",
     "venue_difference",
-    "toss_performance_difference"
+    "toss_performance_difference",
+    "team1_won_toss",
+    "toss_decision_bat"
 ]
 
 # Find split using unique dates

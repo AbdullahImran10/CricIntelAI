@@ -28,13 +28,16 @@ df["toss_performance_difference"] = (
 )
 
 # Encode actual toss information
-df["team1_won_toss"] = (
-    df["toss_winner"] == df["team1"]
-).astype(int)
+# Symmetrical toss features
+df["toss_advantage"] = df.apply(
+    lambda row: 1 if row["toss_winner"] == row["team1"] else -1,
+    axis=1
+)
 
-df["toss_decision_bat"] = (
-    df["toss_decision"] == "bat"
-).astype(int)
+df["toss_decision_advantage"] = (
+    df["toss_advantage"] *
+    df["toss_decision"].map({"bat": 1, "field": -1})
+)
 
 # Select model features
 feature_columns = [
@@ -43,8 +46,8 @@ feature_columns = [
     "h2h_difference",
     "venue_difference",
     "toss_performance_difference",
-    "team1_won_toss",
-    "toss_decision_bat"
+    "toss_advantage",
+    "toss_decision_advantage"
 ]
 
 X = df[feature_columns]

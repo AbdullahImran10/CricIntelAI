@@ -31,8 +31,23 @@ model = LogisticRegression(max_iter=1000)
 
 print("\n========== MODEL TRAINING ==========")
 
-model.fit(X_train, y_train)
+# Create mirrored training examples
+X_train_mirrored = -X_train
+y_train_mirrored = 1 - y_train
 
+# Combine original and mirrored data
+X_train_augmented = pd.concat(
+    [X_train, X_train_mirrored],
+    ignore_index=True
+)
+
+y_train_augmented = pd.concat(
+    [y_train, y_train_mirrored],
+    ignore_index=True
+)
+
+# Train model
+model.fit(X_train_augmented, y_train_augmented.values.ravel())
 print("Logistic Regression trained successfully!")
 
 # ==========================================
